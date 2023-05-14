@@ -14,6 +14,27 @@ class Article:
         - No utilizar Dataclasses
         - Utilizar Type Hints en todos los métodos y variables
     """
+    def __init__(self,nombre,costo,descuento=0):
+            self.nombre = nombre
+            self.costo = costo
+            self.descuento = descuento
+    
+    
+    #===============================
+    __iva = 0.21
+    
+    @classmethod
+    def actualizar_iva(cls,arg):
+        cls.__iva = arg 
+    #===============================
+    
+    #===============================
+    @property                       #esta seccion se utiliza para retornar el atributo __precio
+    def precio(self):
+        pre = round((self.costo -self.descuento)*(1+self.__iva),2)
+        return pre
+    #===============================
+
 
 
 # NO MODIFICAR - INICIO

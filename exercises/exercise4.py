@@ -22,6 +22,18 @@ Restricciones:
     - No utilizar properties
     - Utilizar Type Hints en todos los métodos y variables
 """
+@dataclass
+class Materia:
+    nombre: str
+
+
+@dataclass
+class Carrera:
+
+    longitud:List
+
+    def __str__(self):
+        return f'Carrera(materias={self.longitud})'
 
 
 # NO MODIFICAR - INICIO
