@@ -58,24 +58,33 @@ try:
 except TypeError:
     assert False, "El descuento es opcional"
 
+try:
+    article = Article(nombre="Auto", costo=1)
+    article.precio = 2
+    assert False, "No se puede modificar el precio"
+except AttributeError:
+    assert True
+
+
 # Test básico
 article = Article("Auto", 1)
 assert article.nombre == "Auto"
-assert article.calcular_precio() == 1.21
+assert article.precio == 1.21
+
 
 article = Article("Auto", 1, 0.21)
 assert article.nombre == "Auto"
-assert article.calcular_precio() == 0.96
+assert article.precio == 0.96
 
 
 # Test palabra clave
 article = Article(costo=1, nombre="Auto")
 assert article.nombre == "Auto"
-assert article.calcular_precio() == 1.21
+assert article.precio == 1.21
 
 article = Article(costo=1, nombre="Auto", descuento=0.21)
 assert article.nombre == "Auto"
-assert article.calcular_precio() == 0.96
+assert article.precio == 0.96
 
 
 # Test de método de clase
@@ -83,5 +92,5 @@ Article.actualizar_iva(0.25)
 
 article = Article(costo=1, nombre="Auto")
 assert article.nombre == "Auto"
-assert article.calcular_precio() == 1.25
+assert article.precio == 1.25
 # NO MODIFICAR - FIN

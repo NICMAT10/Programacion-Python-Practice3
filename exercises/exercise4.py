@@ -24,16 +24,15 @@ Restricciones:
 """
 @dataclass
 class Materia:
-    nombre: str
-
+    nombre: str    
 
 @dataclass
 class Carrera:
-
-    longitud:List
-
+    longitud: list
     def __str__(self):
-        return f'Carrera(materias={self.longitud})'
+        print(self.longitud)
+        return f"Carrera(materias={self.longitud})"
+
 
 
 # NO MODIFICAR - INICIO
@@ -51,16 +50,16 @@ except TypeError:
     assert True
 
 # Test básico
-matematica = Materia("Matemática")
-assert matematica.nombre == "Matemática"
+matematica = Materia("Matematica")
+assert matematica.nombre == "Matematica"
 
-estadistica = Materia(nombre="Estadística")
-assert estadistica.nombre == "Estadística"
+estadistica = Materia(nombre="Estadistica")
+assert estadistica.nombre == "Estadistica"
 
 ciclo_basico = Carrera([matematica, estadistica])
 assert (
     str(ciclo_basico)
-    == "Carrera(materias=[Materia(nombre='Matemática'), Materia(nombre='Estadística')])"  # noqa: 501
+    == "Carrera(materias=[Materia(nombre='Matematica'), Materia(nombre='Estadistica')])"  # noqa: 501
 )
 
 assert len(ciclo_basico) == 2

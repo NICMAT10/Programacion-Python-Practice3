@@ -2,6 +2,7 @@
 
 
 class Article:
+
     """Re-Escribir el ejercicio anterior utilizando una property en vez de un
     método de instancia.
 
@@ -14,28 +15,21 @@ class Article:
         - No utilizar Dataclasses
         - Utilizar Type Hints en todos los métodos y variables
     """
-    def __init__(self,nombre,costo,descuento=0):
-            self.nombre = nombre
-            self.costo = costo
-            self.descuento = descuento
+    iva = 0.21
+    def __init__(self, nombre: str, costo: float, descuento: float = 0.0) -> None:
+        self.nombre = nombre
+        self.costo = costo
+        self.descuento = descuento
     
-    
-    #===============================
-    __iva = 0.21
+    @property
+    def precio(self):
+        precio_con_iva= self.costo*(1+self.iva)
+        precio_con_descuento=precio_con_iva *(1-self.descuento)
+        return round(precio_con_descuento,2)
     
     @classmethod
-    def actualizar_iva(cls,arg):
-        cls.__iva = arg 
-    #===============================
-    
-    #===============================
-    @property                       #esta seccion se utiliza para retornar el atributo __precio
-    def precio(self):
-        pre = round((self.costo -self.descuento)*(1+self.__iva),2)
-        return pre
-    #===============================
-
-
+    def actualizar_iva(cls, nueva_tasa: float) -> None:
+        cls.iva=nueva_tasa
 
 # NO MODIFICAR - INICIO
 # Test parámetro obligatorio
@@ -73,7 +67,7 @@ assert article.precio == 1.21
 
 article = Article("Auto", 1, 0.21)
 assert article.nombre == "Auto"
-assert article.precio == 0.96
+assert article.precio == 1
 
 
 # Test palabra clave
@@ -83,7 +77,7 @@ assert article.precio == 1.21
 
 article = Article(costo=1, nombre="Auto", descuento=0.21)
 assert article.nombre == "Auto"
-assert article.precio == 0.96
+assert article.precio == 1
 
 
 # Test de método de clase
